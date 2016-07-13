@@ -1,8 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="jquery.js"></script>
-	<script type="text/javascript" src="underscore"></script>
+	<script type="text/javascript" src="underscore.js"></script>
+	<script type="text/javascript" src="todo.js"></script>
+	<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css"></script>
+    
+
+
+	<script type="text/javascript">
+		function startTime() {
+		    var today = new Date();
+		    var h = today.getHours();
+		    var m = today.getMinutes();
+		    var ampm = h>= 12 ? 'PM' : 'AM';
+		    m = checkTime(m);
+		    document.getElementById('time').innerHTML =(h + ":" + m + " " + ampm);
+		    var t = setTimeout(startTime, 500);
+		}
+		function checkTime(i) {
+		    if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+		    return i;
+		}
+    </script>
 	<style>
 		.bottom
 	        {
@@ -31,26 +55,32 @@
 	</style>
 	
 </head>
-<body>
+<body onload="startTime()">
     <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red; " id="main">
 		<table>
 			<tr>
-				<td style="color:green;width:1px; height:1px; border-style:dotted;font:right;" id="date">DATE<input type="text">		
+				<td style="color:green;width:1px; height:1px; border-style:dotted;font:right;" >
+				<input type="text" id="date">	
 				</td>
-				<td style="color:blue;width:1px; height:1px; border-style:dotted;font left" id="time">TIME<input type="text">
+				<td style="color:blue;width:100px; height:1px; border-style:dotted;font left" id="time" >
 				</td>
 			</tr>
 			<tr>
 				<td>
 					<input type="text" name="title">
-					<span style="width:100px">
-						<textarea rows="" cols="" name="comment" >Enter text here...</textarea>
-						<button>save</button>
-					</span>
+				</td>	
+			</tr>
+			<tr>
+			    <td>
+					<textarea rows="" cols="" name="comment" placeholder="Enter text here..."></textarea>
+					<button>save</button>
 				</td>
 			</tr>
 			<tr>
 				<button>ADD</button>
+			</tr>
+			<tr>
+				<button>Edit <a href="to.html"></button>
 			</tr>
 		</table>
 	</div>
@@ -65,7 +95,7 @@
   				</td>
   			</tr>
   			<tr>
-  				<td>ugjhghj</td>
+  				<td></td>
   			</tr>
 		</div>
         <div class="box2">
@@ -75,7 +105,7 @@
                 </td>	
             </tr>
             <tr>
-  				<td>jhfhjds</td>
+  				<td></td>
   			</tr>
         </div>
   		<div class="box3">
@@ -85,37 +115,12 @@
 				</td>
 			</tr>
 			<tr>
-  				<td>jkbjkbjk</td>
+  				<td></td>
   			</tr>
   		</div>
     </div>
 
-    <br/>
-
-    <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red;" id="main">
-		<table>
-		    <tr>
-				<button>Edit</button>
-			</tr>
-			<tr>
-				<td style="color:green;width:1px; height:1px; border-style:dotted;font:right;" id="date">DATE<input type="text">		
-				</td>
-				<td style="color:blue;width:1px; height:1px; border-style:dotted;font left" id="time">TIME<input type="text">
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<input type="text" name="title">
-					<span style="width:100px">
-						<textarea rows="" cols="" name="comment" >Enter text here...</textarea>
-						<button>save</button>
-					</span>
-				</td>
-			</tr>
-			
-		</table>
-	</div>
-
+    
 
 
 </body>
