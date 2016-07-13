@@ -12,11 +12,11 @@
     <script type="text/javascript">
         function startTime() {
             var today = new Date();
-            var h = today.getHours();
-            var m = today.getMinutes();
-            var ampm = h>= 12 ? 'PM' : 'AM';
-            m = checkTime(m);
-            document.getElementById('time').innerHTML =(h + ":" + m + " " + ampm);
+            var hours = today.getHours();
+            var minutes = today.getMinutes();
+            var ampm = hours>= 12 ? 'PM' : 'AM';
+            minutes = checkTime(minutes);
+            document.getElementById('time').innerHTML =(hours + ":" + minutes + " " + ampm);
             var t = setTimeout(startTime, 500);
         }
         function checkTime(i) {
@@ -25,26 +25,22 @@
         }
     </script>
     <style>
-        .bottom
-            {
+        .bottom{
                 width:768px;
                 border:2px solid #000;
                 border: solid 5px black;
             }
-        .box1
-        {
+        .box1{
             width:32.5%;
             display:inline-block;
             border-right: solid 5px black;
         }     
-        .box2
-        {
+        .box2{
             width:32.5%;
             display:inline-block;
             border-right: solid 5px black;
         } 
-        .box3
-        {
+        .box3{
             width:32.5%;
             display:inline-block;
             
