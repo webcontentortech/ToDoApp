@@ -19,4 +19,6 @@ $(document).ready(function() {
     $("#edit").click(function() {
         $("#main1").dialog();
     });
+    var a=$("#main").val();
+    console.log(a);
 });
