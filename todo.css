@@ -1,0 +1,19 @@
+.bottom{
+    width:768px;
+    border:2px solid #000;
+    border: solid 5px black;
+}
+.box1{
+    width:32.5%;
+    display:inline-block;
+      border-right: solid 5px black;
+}     
+.box2{
+    width:32.5%;
+    display:inline-block;
+    border-right: solid 5px black;
+} 
+.box3{
+    width:32.5%;
+    display:inline-block;
+}       

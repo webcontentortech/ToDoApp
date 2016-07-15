@@ -6,9 +6,11 @@
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" src="underscore.js"></script>
         <script type="text/javascript" src="todo.js"></script>
-        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
-        <script src="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css"></script>
+        <script type="text/javascript" src="jquery1.js"></script>
+        <script type="text/javascript" src="jquery2.js"></script>
+        <link rel="stylesheet" type="text/css" href="todo.css">
+        <link rel="stylesheet" href="jquery1.css">
+        <link rel="stylesheet" href="jquery2.css">
         <script type="text/javascript">
             function startTime() {
                 var today = new Date();
@@ -16,97 +18,127 @@
                 var minutes = today.getMinutes();
                 var ampm = hours>= 12 ? 'PM' : 'AM';
                 minutes = checkTime(minutes);
-                document.getElementById('time').innerHTML =(hours + ":" + minutes + " " + ampm);
+                document.getElementById('addtime').innerHTML =(hours + ":" + minutes + " " + ampm);
+                document.getElementById('edittime').innerHTML =(hours + ":" + minutes + " " + ampm);
                 var t = setTimeout(startTime, 500);
             }
             
             function checkTime(i) {
-                if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+                if (i < 10) {i = "0" + i};  
                 return i;
             }
         </script>
-        <style>
-            .bottom{
-                width:768px;
-                border:2px solid #000;
-                border: solid 5px black;
-            }
-            .box1{
-                width:32.5%;
-                display:inline-block;
-                border-right: solid 5px black;
-            }     
-            .box2{
-                width:32.5%;
-                display:inline-block;
-                border-right: solid 5px black;
-            } 
-            .box3{
-                width:32.5%;
-                display:inline-block;
-            }       
-        </style>
     </head>
     <body onload="startTime()">
         <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red; " id="main">
             <table>
                 <tr>
-                    <td style="color:green;width:1px; height:1px; border-style:dotted;font:right;" >
-                    <input type="text" id="date">   
+                    <td style="color:green;width:1px; height:1px; border-style:dotted;font:right;" >DATE:
+                        <input type="text" id="date" >   
                     </td>
-                    <td style="color:blue;width:100px; height:1px; border-style:dotted;font left" id="time" >
+                    <td style="color:blue;width:100px; height:1px; border-style:dotted;font left;" id="addtime" >
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <input type="text" name="title">
-                    </td>   
+                    <td>TITLE:
+                        <input type="text" name="title" placeholder="title...">
+                    </td>
                 </tr>
                 <tr>
-                    <td>
+                    <td>DESCRIPTION:
                         <textarea rows="" cols="" name="comment" placeholder="Enter text here..."></textarea>
-                        <button>save</button>
                     </td>
-                </tr>
-                <tr>
-                    <button>ADD</button>
-                </tr>
-                <tr>
-                    <button>Edit <a href="to.html"></button>
                 </tr>
             </table>
         </div>
-        <br/>
-        <div class="bottom">
-            <div class="box1" >
+        <br>
+        <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red; " id="main1">
+            <table>
                 <tr>
-                    <td>
-                        <h1>NONE</h1>
+                    <td style="color:green;width:1px; height:1px; border-style:dotted;font:right;">DATE:
+                        <input type="text" id="date1">   
+                    </td>
+                    <td style="color:blue;width:100px; height:1px; border-style:dotted;font left;" id="edittime" >
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
-                </tr>
-            </div>
-            <div class="box2">
-                <tr>
-                    <td>
-                        <h1>IN PROGRESS</h1>
-                    </td>   
-                </tr>
-                <tr>
-                    <td></td>
-                </tr>
-            </div>
-            <div class="box3">
-                <tr>
-                    <td>
-                        <h1>COMPLETED</h1>
+                    <td>TITLE:
+                        <input type="text" name="title" id="title">
                     </td>
                 </tr>
                 <tr>
-                    <td></td>
+                    <td>DESCRIPTION:
+                        <textarea rows="" cols="" name="comment" placeholder="Enter text here..." id="decription"></textarea>
+                    </td>
                 </tr>
+                <tr>
+                    <td>
+                        <button id="save">save</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br>
+        <div style="border: solid 1px black; width:780px;">
+            <button id="add">ADD</button>
+            <button style="margin:left" id="edit">EDIT</button>
+            <br>
+            <div class="bottom">
+                <div class="box1" >
+                    <tr>
+                        <td>
+                            <h1>NONE</h1>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="span1"></span>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="span2"></span>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="span3"></span>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span id="span4"></span>
+                        </td>
+                    </tr>
+                </div>
+                <div class="box2">
+                    <tr>
+                        <td>
+                            <h1>IN PROGRESS</h1>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                </div>
+                <div class="box3">
+                    <tr>
+                        <td>
+                            <h1>COMPLETED</h1>
+                            <hr>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                    </tr>
+                </div>
             </div>
         </div>
     </body>
