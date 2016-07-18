@@ -16,4 +16,8 @@
 .box3{
     width:32.5%;
     display:inline-block;
+}
+.draggable{
+    width: 150px;
+    padding: 0.5em;
 }       

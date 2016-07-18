@@ -8,6 +8,7 @@
         <script type="text/javascript" src="todo.js"></script>
         <script type="text/javascript" src="jquery1.js"></script>
         <script type="text/javascript" src="jquery2.js"></script>
+        <script type="text/javascript" src="underscore.js"></script>
         <link rel="stylesheet" type="text/css" href="todo.css">
         <link rel="stylesheet" href="jquery1.css">
         <link rel="stylesheet" href="jquery2.css">
@@ -41,18 +42,18 @@
                 </tr>
                 <tr>
                     <td>TITLE:
-                        <input type="text" name="title" placeholder="title...">
+                        <input type="text" name="title" placeholder="title..." id="title">
                     </td>
                 </tr>
                 <tr>
                     <td>DESCRIPTION:
-                        <textarea rows="" cols="" name="comment" placeholder="Enter text here..."></textarea>
+                        <textarea rows="" cols="" name="comment" placeholder="Enter text here..." id="description"></textarea>
                     </td>
                 </tr>
             </table>
         </div>
         <br>
-        <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red; " id="main1">
+        <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red;" id="main1">
             <table>
                 <tr>
                     <td style="color:green;width:1px; height:1px; border-style:dotted;font:right;">DATE:
@@ -63,12 +64,12 @@
                 </tr>
                 <tr>
                     <td>TITLE:
-                        <input type="text" name="title" id="title">
+                        <input type="text" name="title" id="title1">
                     </td>
                 </tr>
                 <tr>
                     <td>DESCRIPTION:
-                        <textarea rows="" cols="" name="comment" placeholder="Enter text here..." id="decription"></textarea>
+                        <textarea rows="" cols="" name="comment" placeholder="Enter text here..." id="decription1"></textarea>
                     </td>
                 </tr>
                 <tr>
@@ -85,33 +86,10 @@
             <br>
             <div class="bottom">
                 <div class="box1" >
-                    <tr>
-                        <td>
+                    <tr >
+                        <td >
                             <h1>NONE</h1>
                             <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span id="span1"></span>
-                            <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span id="span2"></span>
-                            <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span id="span3"></span>
-                            <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <span id="span4"></span>
                         </td>
                     </tr>
                 </div>
@@ -122,20 +100,12 @@
                             <hr>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                        </td>
-                    </tr>
                 </div>
                 <div class="box3">
                     <tr>
                         <td>
                             <h1>COMPLETED</h1>
                             <hr>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                         </td>
                     </tr>
                 </div>

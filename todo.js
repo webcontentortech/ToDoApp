@@ -1,5 +1,7 @@
 $(document).ready(function() {
     var clone;
+    var items = [];
+    var adddata={date:"",title:"",descrip:""};
     var obj;
     $("#main").hide();
     $("#main1").hide();
@@ -16,16 +18,24 @@ $(document).ready(function() {
         changeYear: true,
     });
     $("#add").click(function() {
+        $("#date").val('');
+        $("#title").val('');
+        $("#description").val('');
         $.ui.dialog.prototype._focusTabbable = function() {};
         $("#main").dialog({
             modal: true,
-            of: window,
             buttons: {
                 SAVE: function() {
+                    var date=$("#date").val();
+                    var title=$("#title").val();
+                    var descrip=$("#description").val();
+                    adddata.date = date;
+                    adddata.title = title;
+                    adddata.descrip = descrip;
+                    console.log(adddata);
+                    items.push(adddata);
                     $(this).dialog("close");
-                },
-                ADD: function() {
-                    $(this).dialog("add");
+                    loadDataInDiv(items);
                 }
             }
         });
@@ -35,18 +45,12 @@ $(document).ready(function() {
         $("#main1").dialog();
     });
 
-    /*$(function(){
-    var click=[$('#add').click(function())];
-    $("#add").click(function(){
-    var a=$("#main").dialog().clone();
-    var b=$("#main").dialog().clone();
-    var c=$("#main").dialog().clone();
-    var d=$("#main").dialog().clone();
-    obj=[a,b,c,d];
-    document.getElementById(obj[0]).innerHTML =("#span1");
-    document.getElementById(obj[1]).innerHTML =("#span1");
-    document.getElementById(obj[2]).innerHTML =("#span1");
-    document.getElementById(obj[3]).innerHTML =("#span1");
-    });
-    });*/
+    var loadDataInDiv = function(items){
+        var div = '';
+        $.each(items, function(key, value){
+            div += '<tr><td><div style="color:red;width:100px;height:auto; padding: auto;border-style:solid;border-color:red;" id="div1">'+value.date+'<br>'+value.title+'<br>'+value.descrip+'<div><td><tr>';
+        });
+        $('.box1').append(div);
+        $("#div1").draggable();
+    }
 });
