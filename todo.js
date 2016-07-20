@@ -1,56 +1,68 @@
 $(document).ready(function() {
-    var clone;
+    var item={date:"",title:"",descrip:"",hour:"",min:"",sec:""};
     var items = [];
-    var adddata={date:"",title:"",descrip:""};
-    var obj;
+    var newitems=[];
+    var addData={date:"",title:"",descrip:"",hour:"",min:"",sec:""};
+    var today = new Date();
+    var hours = today.getHours();
+    var minutes = today.getMinutes();
     $("#main").hide();
-    $("#main1").hide();
     $("#date").datepicker({
         yearRange: "2016:2020",
         minDate: '0',
         changeMonth: true,
         changeYear: true,
     });
-    $("#date1").datepicker({
-        yearRange: "2016:2020",
-        minDate: '0',
-        changeMonth: true,
-        changeYear: true,
-    });
     $("#add").click(function() {
-        $("#date").val('');
-        $("#title").val('');
-        $("#description").val('');
+        $("#date").val("");
+        $("#title").val("");
+        $("#description").val("");
+        $("#h").val("");
+        $("#m").val("");
+        $("#s").val("");
         $.ui.dialog.prototype._focusTabbable = function() {};
         $("#main").dialog({
-            modal: true,
             buttons: {
                 SAVE: function() {
                     var date=$("#date").val();
                     var title=$("#title").val();
                     var descrip=$("#description").val();
-                    adddata.date = date;
-                    adddata.title = title;
-                    adddata.descrip = descrip;
-                    console.log(adddata);
-                    items.push(adddata);
+                    var hour=$("#h").text(hours);
+                    console.log(hour);
+                    var min=$("#m").val();
+                    var sec=$("#s").val();
+                    console.log(hour)
+                    addData.date = date;
+                    addData.title = title;
+                    addData.descrip = descrip;
+                    addData.hour=hour;
+                    addData.min=min;
+                    addData.sec=sec;
+                    console.log(addData);
+                    items.push(addData);
                     $(this).dialog("close");
                     loadDataInDiv(items);
                 }
             }
         });
     });
-    $("#edit").click(function() {
-        $.ui.dialog.prototype._focusTabbable = function() {};
-        $("#main1").dialog();
-    });
 
     var loadDataInDiv = function(items){
         var div = '';
         $.each(items, function(key, value){
-            div += '<tr><td><div style="color:red;width:100px;height:auto; padding: auto;border-style:solid;border-color:red;" id="div1">'+value.date+'<br>'+value.title+'<br>'+value.descrip+'<div><td><tr>';
+            div='<body><table><tr><td style="color:red;width:100px;height:auto; padding:auto;border-style:solid;border-color:red;" title="Edit" id="div1"><input type="text" value='+value.date+'><br><input type="text" value='+value.title+'><br><textarea rows="" cols="">'+value.descrip+'</textarea>';
         });
-        $('.box1').append(div);
+        $(".box1").append(div);
         $("#div1").draggable();
+        $("#div1").click(function(){
+            $(this).dialog({
+                buttons:{
+                    SAVE:function(){
+                        $(this).dialog("close");
+                        loadDataInDiv(item);
+                    }
+                }
+            });
+        });
     }
 });

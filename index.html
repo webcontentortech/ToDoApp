@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" src="underscore.js"></script>
         <script type="text/javascript" src="todo.js"></script>
@@ -20,7 +18,6 @@
                 var ampm = hours>= 12 ? 'PM' : 'AM';
                 minutes = checkTime(minutes);
                 document.getElementById('addtime').innerHTML =(hours + ":" + minutes + " " + ampm);
-                document.getElementById('edittime').innerHTML =(hours + ":" + minutes + " " + ampm);
                 var t = setTimeout(startTime, 500);
             }
             
@@ -39,10 +36,19 @@
                     </td>
                     <td style="color:blue;width:100px; height:1px; border-style:dotted;font left;" id="addtime" >
                     </td>
-                </tr>
                 <tr>
+                <tr>
+                    <td style="color:pink;width:50px;border-style:dotted;font:right;">
+                        <input type="number" min="0" max="23" size="0.5" placeholder="H" id="h" />
+                        <input type="number" min="0" max="59" size="0.5" placeholder="M" id="m" />
+                        <input type="number" min="0" max="59" size="0.5" placeholder="S" id="s" />
+                    </td>
+                    <td>
+                        <button id="alarm" >ALM</button>
+                    </td>
+                </tr>
                     <td>TITLE:
-                        <input type="text" name="title" placeholder="title..." id="title">
+                        <input type="text" name="title" placeholder="title..." id="title" >
                     </td>
                 </tr>
                 <tr>
@@ -53,36 +59,8 @@
             </table>
         </div>
         <br>
-        <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red;" id="main1">
-            <table>
-                <tr>
-                    <td style="color:green;width:1px; height:1px; border-style:dotted;font:right;">DATE:
-                        <input type="text" id="date1">   
-                    </td>
-                    <td style="color:blue;width:100px; height:1px; border-style:dotted;font left;" id="edittime" >
-                    </td>
-                </tr>
-                <tr>
-                    <td>TITLE:
-                        <input type="text" name="title" id="title1">
-                    </td>
-                </tr>
-                <tr>
-                    <td>DESCRIPTION:
-                        <textarea rows="" cols="" name="comment" placeholder="Enter text here..." id="decription1"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="save">save</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <br>
         <div style="border: solid 1px black; width:780px;">
             <button id="add">ADD</button>
-            <button style="margin:left" id="edit">EDIT</button>
             <br>
             <div class="bottom">
                 <div class="box1" >
