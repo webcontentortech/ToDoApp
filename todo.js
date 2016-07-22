@@ -2,6 +2,7 @@ $(document).ready(function(){
     var date;
     var editHours;
     var editminute;
+    var ampm;
     var editDate;
     var editTitle;
     var editDescrip;
@@ -12,8 +13,7 @@ $(document).ready(function(){
     var addData={date:"",title:"",descrip:"",hour:"",min:""};
     var latestData={Hour:"",Min:"",Date:"",Title:"",Descrip:""};
     var currentTime=new Date();
-    var alarmTime={H:currentTime.getHours(),M:currentTime.getMinutes()};
-    console.log(alarmTime);
+    var alarmTime;
     setInterval(alarm(),1000);
     startTime();
     alarm();
@@ -113,12 +113,16 @@ $(document).ready(function(){
     function startTime() {
         hours = currentTime.getHours();
         minutes = currentTime.getMinutes();
+        ampm = hours>= 12 ? 'PM' : 'AM';
         var timeHour=$("#addStartHours").val(hours);
         var timeMin=$("#addStartMin").val(minutes);
+        var AMPM=$("#ampm").val(ampm);
     }
 
     function alarm(){
         $.each(items, function(key, value){
+            alarmTime={H:currentTime.getHours(),M:currentTime.getMinutes()};
+            console.log(alarmTime);
             if(alarmTime==currentTime){
                 console.log("hiii");
                 alert("time is over");
