@@ -13,14 +13,12 @@ $(document).ready(function(){
     var items = [];
     var latestItems=[];
     var addData={date:"",title:"",descrip:"",hour:"",min:"",AMPM:""};
-    var latestData={Hour:"",Min:"",AMPM:"", Date:"",Title:"",Descrip:""};
+    var latestData={Hour:"",Min:"",Col:":",AMPM:"", Date:"",Title:"",Descrip:""};
     var today=new Date();
-    var currentTime;
-    var alarmTime;
     startTime();
-    // alarm();
     $("#main").hide();
     $("#date").datepicker({
+        defaultDate: new Date(),
         yearRange: "2016:2020",
         minDate: '0',
         changeMonth: true,
@@ -30,19 +28,19 @@ $(document).ready(function(){
         $("#date").val("");
         $("#title").val("");
         $("#description").val("");
-        $.ui.dialog.prototype._focusTabbable = function() {};
         $("#main").dialog({
             buttons: {
                 SAVE: function() {
-                    if($('#title').val() == ''){
+                    if(($('#title').val() == '')||($('#description').val()== '')){
                         items.push(addData);
-                        alert("please first enter the title");
+                        alert("Please enter Task Title and Description.");
                     }else{
                         date=$("#date").val();
                         var title=$("#title").val();
                         var descrip=$("#description").val();
                         starthour=$("#addStartHours").val();
                         startmin=$("#addStartMin").val();
+                        console.log(startmin)
                         var ampm=$("#ampm").val();
                         addData.date = date;
                         addData.title = title;
@@ -50,6 +48,9 @@ $(document).ready(function(){
                         addData.hour=starthour;
                         addData.min=startmin;
                         addData.AMPM=ampm;
+                        if(today.getMinutes() == startmin){
+                            alert("alarm ringing");
+                        }
                         console.log(addData);
                         items.push(addData);
                         $(this).dialog("close");
@@ -66,16 +67,16 @@ $(document).ready(function(){
             div='<body>'
                     +'<table>'
                         +'<tr>'
-                            +'<td style="color:red;width:100px;height:auto; padding:auto;border-style:solid;border-color:red;" title="Edit" id="latesttask">'
+                            +'<td style="color:red;width:100px;height:auto; padding:auto;border-style:solid;border-color:red;" title="EDIT TASK" id="latesttask">'
+                                +'<input type="text" id="editTitle"  style="text-transform:uppercase" placeholder="Title" value='+value.title+'>'
+                                +'<br>'
                                 +'<input type="number" min="0" max="23" size="0.5" placeholder="H" id="editHours" value='+value.hour+'>'
                                 +'<input type="number" min="0" max="59" size="0.5" placeholder="M" id="editminute" value='+value.min+'>'
-                                +'<button id="alarm1" >AON</button>'
+                                +'<button id="alarm1">AON</button>'
                                 +'<br>'
-                                +'<input type="text"  id="editDate" value='+value.date+'>'
+                                +'<input type="text"  id="editDate" placeholder="Date" value='+value.date+'>'
                                 +'<br>'
-                                +'<input type="text" id="editTitle" value='+value.title+'>'
-                                +'<br>'
-                                +'<textarea rows="" cols="" id="editDescrip">'+value.descrip+'</textarea>'
+                                +'<textarea rows="" cols="" placeholder="Description" id="editDescrip">'+value.descrip+'</textarea>'
                             +'</td>';
         });
         $(".box1").append(div);
@@ -97,10 +98,9 @@ $(document).ready(function(){
                         latestData.Date=editDate;
                         latestData.Title=editTitle;
                         latestData.Descrip=editDescrip;
-                        if (today.getMinutes() == editMinute) {
-            alert("alarm ringing");
-        }
-                        // alarm();
+                        if(today.getMinutes() == editMinute){
+                            alert("alarm ringing");
+                        }
                         console.log(latestData);
                         $(this).dialog("close");
                         loadNewInDiv(latestItems);
@@ -114,23 +114,28 @@ $(document).ready(function(){
         var newDiv='';
         $.each(items, function(key, value){
             newDiv='<body>'
-            +'<table>'
-            +'<tr>'
-            +'<td style="color:red;width:100px;height:auto;padding:auto;border-style:solid;border-color:red;" title="Edit" id="edittask">'
-                +'<input type="number" min="0" max="23" size="0.5" placeholder="H" size="0.5" id="editHours" value='+latestData.Hour+'>'
-                +'<input type="number" min="0" max="59" size="0.5" placeholder="M" size="0.5" id="editminute" value='+latestData.Min+'>'
-                +'<input type="text" size="4" onChange="setv()" id="ampm1" value='+latestData.AMPM+'>'
-                +'<button id="alarm2" name="AOFF</button>'
-                +'<br>'
-                +'<input type="text"  id="editDate" value='+latestData.Date+'>'
-                +'<br>'
-                +'<input type="text" id="editTitle" value='+latestData.Title+'>'
-                +'<br>'
-                +'<textarea rows="" cols="" id="editDescrip">'+latestData.Descrip+'</textarea>'
-            +'</td>';
+                        +'<table>'
+                            +'<tr>'
+                                +'<td style="color:red;width:100px;height:auto;padding:auto;border-style:solid;border-color:red;" title="Edit" id="edittask">'
+                                    +'<span style="color:black;text-transform:uppercase; " id="editTitle"  placeholder="Title">'+latestData.Title+'</span>'
+                                    +'<br>'
+                                    +'<span id="editHours">'+latestData.Hour+latestData.Col+'</span>'
+                                    +'<span id="editminute">'+latestData.Min+'</span>'
+                                    +'<span id="ampm1" >'+latestData.AMPM+'</span>'
+                                    +'<br>'
+                                    +'<span id="editDate">'+latestData.Date+'</span>'
+                                    +'<br>'
+                                    +'<span id="editDescrip">'+latestData.Descrip+'</span>'
+                                +'</td>';
         });
         $(".box1").append(newDiv);
         $("#edittask").draggable();
+        //$('#edittask').html($('#edittask').data('old-state'));
+        //$("#edittask").html(latesttask);
+        /*var dataSave=latestItems[0];
+        console.log(dataSave);
+        $("#edittask").data(dataSave);*/
+        //console.log(latestItems[0]);
     }
 
     function startTime() {
@@ -142,6 +147,22 @@ $(document).ready(function(){
         var AMPM=$("#ampm").val(ampm);
     }
 
+    /*$("#alarm").click(function(){
+        alarm();
+    });
+
+    function alarm() {
+        (today.getMinutes()==startmin)
+            alert("alarm ringing");
+            console.log("hiii");
+        // }else if(today.getMinutes()==editminute){
+        //     alert("alarm ringing");
+        //     console.log("hello");
+        // }else{
+        //      console.log("hifi");
+        // }
+    }    
+*/
     /*function alarm(){
         currentTime={H:today.getHours(),M:today.getMinutes(),ampm:addData.AMPM};
         if((today.getHours()==editHours)&&(today.getMinutes()==editMinute)){
