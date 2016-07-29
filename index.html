@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <script type="text/javascript" src="jquery.js"></script>
         <script type="text/javascript" src="underscore.js"></script>
         <script type="text/javascript" src="todo.js"></script>
-        <script type="text/javascript" src="jquery1.js"></script>
-        <script type="text/javascript" src="jquery2.js"></script>
-        <script type="text/javascript" src="underscore.js"></script>
         <link rel="stylesheet" type="text/css" href="todo.css">
-        <link rel="stylesheet" href="jquery1.css">
-        <link rel="stylesheet" href="jquery2.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+        <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
+        <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
         <script type="text/javascript">
             function startTime() {
                 var today = new Date();
@@ -20,7 +17,6 @@
                 var ampm = hours>= 12 ? 'PM' : 'AM';
                 minutes = checkTime(minutes);
                 document.getElementById('addtime').innerHTML =(hours + ":" + minutes + " " + ampm);
-                document.getElementById('edittime').innerHTML =(hours + ":" + minutes + " " + ampm);
                 var t = setTimeout(startTime, 500);
             }
             
@@ -31,18 +27,28 @@
         </script>
     </head>
     <body onload="startTime()">
-        <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red; " id="main">
+        <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red; " id="main" title="ADD TASK">
             <table>
                 <tr>
+                    <td>TITLE:
+                        <input type="text" name="title" placeholder="title..." id="title" style="text-transform:uppercase"  >
+                    </td>
+                </tr>
+                <tr>
                     <td style="color:green;width:1px; height:1px; border-style:dotted;font:right;" >DATE:
-                        <input type="text" id="date" >   
+                        <input type="text" id="date"> 
                     </td>
                     <td style="color:blue;width:100px; height:1px; border-style:dotted;font left;" id="addtime" >
                     </td>
                 </tr>
                 <tr>
-                    <td>TITLE:
-                        <input type="text" name="title" placeholder="title..." id="title">
+                    <td style="color:pink;width:50px;border-style:dotted;font:right;">
+                        <input type="number" min="0" max="23" size="0.5" placeholder="H" id="addStartHours">
+                        <input type="number" min="0" max="59" size="0.5" placeholder="M" id="addStartMin" >
+                        <input type="text" maxlength="2" size="4"  id="ampm" >
+                    </td>
+                    <td>
+                        <button id="alarm" >Alarm</button>
                     </td>
                 </tr>
                 <tr>
@@ -53,36 +59,8 @@
             </table>
         </div>
         <br>
-        <div style="color:red;width:550px; padding: auto;border-style:solid;border-color:red;" id="main1">
-            <table>
-                <tr>
-                    <td style="color:green;width:1px; height:1px; border-style:dotted;font:right;">DATE:
-                        <input type="text" id="date1">   
-                    </td>
-                    <td style="color:blue;width:100px; height:1px; border-style:dotted;font left;" id="edittime" >
-                    </td>
-                </tr>
-                <tr>
-                    <td>TITLE:
-                        <input type="text" name="title" id="title1">
-                    </td>
-                </tr>
-                <tr>
-                    <td>DESCRIPTION:
-                        <textarea rows="" cols="" name="comment" placeholder="Enter text here..." id="decription1"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button id="save">save</button>
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <br>
         <div style="border: solid 1px black; width:780px;">
             <button id="add">ADD</button>
-            <button style="margin:left" id="edit">EDIT</button>
             <br>
             <div class="bottom">
                 <div class="box1" >
